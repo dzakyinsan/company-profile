@@ -1,6 +1,7 @@
-import type { Config } from "tailwindcss";
+const { transform } = require("typescript");
 
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     // "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,10 +13,12 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-          'hero-bg': "url('/src/assets/hero-bg.avif')",
-        },
+      },
+      animation: {
+        "fade-in": "fadeIn 1s ease-in forwards",
+        "fade-up": "fadeUp 1s ease-in forwards",
+      },
     },
   },
   plugins: [],
 };
-export default config;
