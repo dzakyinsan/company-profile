@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Product from "./Product";
+import DownArrow from "./../assets/down-arrow.png";
+import Image from "next/image";
 
 interface IProduct {
   id: string;
@@ -78,12 +80,16 @@ const ProductList = () => {
           productsShow.length === products.length && "hidden"
         }`}
       >
-        <span
-          className="cursor-pointer"
-          onClick={() => setProductsShow(products)}
-        >
-          show more
-        </span>
+        <div className="flex justify-center items-center mt-10">
+          <Image
+            src={DownArrow}
+            alt="down-arrow"
+            height={20}
+            width={20}
+            className="animate-bounce mt-10 cursor-pointer"
+            onClick={() => setProductsShow(products)}
+          />
+        </div>
       </div>
     </section>
   );
