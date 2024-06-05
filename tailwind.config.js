@@ -13,6 +13,7 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          'bottom-to-top-gradient': 'linear-gradient(to top, rgb(18,18,18), rgba(0, 0, 0, 0))',
       },
       animation: {
         "fade-in": "fadeIn 1s ease-in forwards",

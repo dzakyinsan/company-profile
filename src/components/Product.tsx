@@ -12,7 +12,7 @@ const Product = ({ id, name, image }: ProductProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <article className="group card-bg border-[1px] border-[#333] rounded-xl shadow-md h-40 overflow-hidden hover:cursor-pointer animate-fade-up">
+    <article className="group card-bg border-[1px] border-[#333] rounded-xl shadow-md h-40 overflow-hidden hover:cursor-pointer">
       <div className="overflow-hidden p-2 relative">
         <div className="absolute top-4 left-5 z-10 text-xs px-[4px] py-[2px] opacity-50 rounded-sm bg-gray-600 text-white">
           {id}

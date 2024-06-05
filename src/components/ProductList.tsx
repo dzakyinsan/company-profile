@@ -16,14 +16,19 @@ interface IImage {
 
 const ProductList = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [productsShow, setProductsShow] = useState<IProduct[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productRes = await fetch("https://www.giovankov.com/api/product.json");
+        const productRes = await fetch(
+          "https://www.giovankov.com/api/product.json"
+        );
         const productsData = await productRes.json();
 
-        const imageRes = await fetch("https://www.giovankov.com/api/image.json");
+        const imageRes = await fetch(
+          "https://www.giovankov.com/api/image.json"
+        );
         const imagesData = await imageRes.json();
 
         const combinedData = productsData.data.map((product: IProduct) => {
@@ -39,8 +44,12 @@ const ProductList = () => {
           };
         });
 
+        const filteredProduct = combinedData.filter(
+          (val: IProduct) => parseInt(val.id) < 9
+        );
 
         setProducts(combinedData);
+        setProductsShow(filteredProduct);
       } catch (error) {
         console.error("Failed to fetch products", error);
       }
@@ -50,9 +59,12 @@ const ProductList = () => {
   }, []);
 
   return (
-    <section className="px-10 lg:px-20">
+    <section className="px-10 lg:px-20 relative">
+      <h1 className="text-2xl font-bold text-center sm:text-start mb-10 flex justify-center sm:justify-start">
+        Meet our Products
+      </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {productsShow.map((product) => (
           <Product
             key={product.id}
             id={product.id}
@@ -60,6 +72,18 @@ const ProductList = () => {
             image={product.image}
           />
         ))}
+      </div>
+      <div
+        className={`bg-bottom-to-top-gradient absolute flex justify-center items-end h-[150px] bottom-[-40px] text-xs w-[-webkit-fill-available] ${
+          productsShow.length === products.length && "hidden"
+        }`}
+      >
+        <span
+          className="cursor-pointer"
+          onClick={() => setProductsShow(products)}
+        >
+          show more
+        </span>
       </div>
     </section>
   );
